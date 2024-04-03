@@ -1,7 +1,7 @@
 export type PropsType  = {
   title: string
   date?: string
-  tasks: Array<TaskType> // массив объектов
+  tasks: Array<TaskType> // анологично tasks2: TaskType[], массив объектов
 }
 
 export type TaskType = {
