@@ -17,14 +17,19 @@ code {
 .todolist {
   background-color: rgb(192, 43, 23);
   padding: 20px;
-  border: 2px solid rgb(255, 255, 255);
   border-radius: 10px;
+
+  &:hover {
+    outline: 4px solid rgb(192, 43, 23);
+    background-color: rgb(10, 10, 10);
+  }
 
   &:nth-child(2) {
     background-color: rgb(40, 20, 170);
 
     &:hover {
       outline: 4px solid rgb(40, 20, 170);
+      background-color: rgb(10, 10, 10);
     }
   }
 
@@ -33,11 +38,8 @@ code {
 
     &:hover {
       outline: 4px solid rgb(16, 195, 66);
+      background-color: rgb(10, 10, 10);
     }
-  }
-
-  &:hover {
-    outline: 4px solid rgb(192, 43, 23);
   }
 }
 
