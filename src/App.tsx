@@ -3,9 +3,6 @@ import { TaskType } from "./Types";
 import { Todolist } from "./Todolist";
 
 function App() {
-  // const titleNameOne = "Red todolistName";
-  // const titleNameTwo = "Blue todolistName";
-  // const titleNameThree = "Green todolistName";
   let tasks_1: Array<TaskType> = [
     {
       id: 1,
@@ -64,9 +61,12 @@ function App() {
   //   },
   // ];
 
-  const removeTask = (id: number) => {
-    console.log(id);
-  };
+  const removeTask = (taskId: number) => {
+    tasks_1 = tasks_1.filter(task => {
+      return task.id !== taskId
+    })
+    console.log(tasks_1)
+  }
 
   return (
     <div className="App">
