@@ -1,7 +1,7 @@
-import { PropsType, FilterValuesType } from "./Types";
+import { PropsType} from "./Types";
 import { Button } from "./Button";
 
-export const Todolist = ({ title, tasks, date, removeTask }: PropsType) => {
+export const Todolist = ({ title, tasks, date, removeTask, changeFilter }: PropsType) => {
   const tasksList = tasks.map((task) => {
     return (
       <li key={task.id}>
@@ -25,9 +25,9 @@ export const Todolist = ({ title, tasks, date, removeTask }: PropsType) => {
         <ul>{tasksList}</ul>
       )}
       <div>
-        <Button title={"All"} />
-        <Button title={"Active"} />
-        <Button title={"Completed"} />
+        <Button title={"All"} onClick={() => changeFilter('all')}/>
+        <Button title={"Active"} onClick={() => changeFilter('Active')}/>
+        <Button title={"Completed"} onClick={() => changeFilter('Completed')}/>
         <div>{date}</div>
       </div>
     </div>

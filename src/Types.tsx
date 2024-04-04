@@ -3,6 +3,7 @@ export type PropsType  = {
   date?: string
   tasks: Array<TaskType> // анологично tasks2: TaskType[], массив объектов
   removeTask: (taskId: number) => void
+  changeFilter: (filter: FilterValuesType) => void
 }
 
 export type TaskType = {

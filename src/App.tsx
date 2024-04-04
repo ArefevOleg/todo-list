@@ -1,5 +1,5 @@
 import "./App.css";
-import { TaskType, FilterValuesType } from "./Types";
+import { TaskType, FilterValuesType} from "./Types";
 import { Todolist } from "./Todolist";
 import React, { useState } from 'react';
 
@@ -13,6 +13,11 @@ function App() {
     { id: 5, title: 'Typescript', isDone: false },
     { id: 6, title: 'RTK query', isDone: false },
   ])
+
+const changeFilter = (filter: FilterValuesType) => {
+  setFilter(filter)
+}
+
   const [filter, setFilter] = useState<FilterValuesType>('all')
 
   let tasksForTodolist = tasks
@@ -77,7 +82,7 @@ function App() {
   return (
     <div className="App">
       <>
-      <Todolist title="Red todolistName" tasks={tasks} removeTask={removeTask} />
+      <Todolist title="Red todolistName" tasks={tasks} removeTask={removeTask} changeFilter = {changeFilter}/>
       {/* <Todolist title="Blue todolistName" tasks={tasks_2} /> */}
       {/* <Todolist title="Green todolistName" tasks={tasks_3} date="01.01.2022" /> */}
       </>
