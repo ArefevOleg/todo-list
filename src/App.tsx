@@ -1,25 +1,24 @@
 import "./App.css";
 import { TaskType } from "./Types";
 import { Todolist } from "./Todolist";
+import React, { useState } from 'react';
 
 function App() {
-  let tasks_1: Array<TaskType> = [
-    {
-      id: 1,
-      title: "HTML&CSS",
-      isDone: true,
-    },
-    {
-      id: 2,
-      title: "JS",
-      isDone: true,
-    },
-    {
-      id: 3,
-      title: "React",
-      isDone: false,
-    },
-  ];
+  let [tasks, setTasks] = useState<TaskType[]>([
+    { id: 1, title: 'HTML&CSS', isDone: true },
+    { id: 2, title: 'JS', isDone: true },
+    { id: 3, title: 'ReactJS', isDone: false },
+    { id: 4, title: 'Redux', isDone: false },
+    { id: 5, title: 'Typescript', isDone: false },
+    { id: 6, title: 'RTK query', isDone: false },
+  ])
+ 
+  const removeTask = (taskId: number) => {
+    const filteredTasks = tasks.filter(task => {
+      return task.id !== taskId
+    })
+    setTasks(filteredTasks)
+  }
   // const tasks_2: Array<TaskType> = [
   //   {
   //     id: 1,
@@ -61,17 +60,10 @@ function App() {
   //   },
   // ];
 
-  const removeTask = (taskId: number) => {
-    tasks_1 = tasks_1.filter(task => {
-      return task.id !== taskId
-    })
-    console.log(tasks_1)
-  }
-
   return (
     <div className="App">
       <>
-      <Todolist title="Red todolistName" tasks={tasks_1} removeTask={removeTask} />
+      <Todolist title="Red todolistName" tasks={tasks} removeTask={removeTask} />
       {/* <Todolist title="Blue todolistName" tasks={tasks_2} /> */}
       {/* <Todolist title="Green todolistName" tasks={tasks_3} date="01.01.2022" /> */}
       </>
