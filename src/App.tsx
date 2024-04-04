@@ -23,28 +23,28 @@ function App() {
       isDone: false,
     },
   ];
-  const tasks_2: Array<TaskType> = [
-    {
-      id: 1,
-      title: "Apple",
-      isDone: false,
-    },
-    {
-      id: 2,
-      title: "Orange",
-      isDone: true,
-    },
-    {
-      id: 3,
-      title: "Pear",
-      isDone: false,
-    },
-    {
-      id: 3,
-      title: "Pineapple",
-      isDone: false,
-    },
-  ];
+  // const tasks_2: Array<TaskType> = [
+  //   {
+  //     id: 1,
+  //     title: "Apple",
+  //     isDone: false,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Orange",
+  //     isDone: true,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Pear",
+  //     isDone: false,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Pineapple",
+  //     isDone: false,
+  //   },
+  // ];
 
   const tasks_3: Array<TaskType> = [
     {
@@ -67,7 +67,7 @@ function App() {
     <div className="App">
       <>
       <Todolist title="Red todolistName" tasks={tasks_1} />
-      <Todolist title="Blue todolistName" tasks={tasks_2} />
+      {/* <Todolist title="Blue todolistName" tasks={tasks_2} /> */}
       <Todolist title="Green todolistName" tasks={tasks_3} date="01.01.2022"/>
       </>
     </div>
