@@ -1,9 +1,21 @@
 import "./App.css";
-import { TaskType } from "./Types";
+import { TaskType, FilterValuesType } from "./Types";
 import { Todolist } from "./Todolist";
 import React, { useState } from 'react';
 
 function App() {
+  const [filter, setFilter] = useState<FilterValuesType>('all')
+
+let tasksForTodolist = tasks
+ 
+if (filter === 'active') {
+  tasksForTodolist = tasks.filter(task => !task.isDone)
+}
+ 
+if (filter === 'completed') {
+  tasksForTodolist = tasks.filter(task => task.isDone)
+}
+
   let [tasks, setTasks] = useState<TaskType[]>([
     { id: 1, title: 'HTML&CSS', isDone: true },
     { id: 2, title: 'JS', isDone: true },

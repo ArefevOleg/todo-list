@@ -16,3 +16,6 @@ export type ButtonPropsType = {
   title: string
   onClick?: () => void
 }
+
+
+export type FilterValuesType = 'all' | 'active' | 'completed'
