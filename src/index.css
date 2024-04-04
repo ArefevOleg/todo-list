@@ -24,6 +24,7 @@ code {
     background-color: rgb(10, 10, 10);
   }
 
+
   &:nth-child(2) {
     background-color: rgb(40, 20, 170);
 
@@ -78,5 +79,9 @@ code {
   &:hover {
     background-color: rgb(188, 166, 190);
     outline: 1px solid rgb(157, 143, 141);
+  }
+
+  &:active {
+    outline: 4px solid rgb(162, 116, 109);
   }
 }
