@@ -63,12 +63,17 @@ function App() {
       isDone: false,
     },
   ];
+
+  const removeTask = (id: number) => {
+    console.log(id);
+  };
+
   return (
     <div className="App">
       <>
-      <Todolist title="Red todolistName" tasks={tasks_1} />
+      <Todolist title="Red todolistName" tasks={tasks_1} removeTask={removeTask} />
       {/* <Todolist title="Blue todolistName" tasks={tasks_2} /> */}
-      <Todolist title="Green todolistName" tasks={tasks_3} date="01.01.2022"/>
+      {/* <Todolist title="Green todolistName" tasks={tasks_3} date="01.01.2022" /> */}
       </>
     </div>
   );

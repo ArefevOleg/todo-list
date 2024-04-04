@@ -1,13 +1,13 @@
 import { PropsType } from "./Types";
 import { Button } from "./Button";
 
-export const Todolist = ({ title, tasks, date }: PropsType) => {
+export const Todolist = ({ title, tasks, date, removeTask }: PropsType) => {
   const tasksList = tasks.map((task) => {
     return (
       <li key={task.id}>
         <input type="checkbox" checked={task.isDone} />{" "}
         <span>{task.title}</span>
-        <button onClick={() => alert(task.id)}>x</button>
+        <button onClick={() => removeTask(task.id)}>x</button>
       </li>
     );
   });
