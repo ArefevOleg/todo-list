@@ -1,4 +1,4 @@
-import { PropsType } from "./Types";
+import { PropsType, FilterValuesType } from "./Types";
 import { Button } from "./Button";
 
 export const Todolist = ({ title, tasks, date, removeTask }: PropsType) => {

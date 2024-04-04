@@ -4,17 +4,6 @@ import { Todolist } from "./Todolist";
 import React, { useState } from 'react';
 
 function App() {
-  const [filter, setFilter] = useState<FilterValuesType>('all')
-
-let tasksForTodolist = tasks
- 
-if (filter === 'active') {
-  tasksForTodolist = tasks.filter(task => !task.isDone)
-}
- 
-if (filter === 'completed') {
-  tasksForTodolist = tasks.filter(task => task.isDone)
-}
 
   let [tasks, setTasks] = useState<TaskType[]>([
     { id: 1, title: 'HTML&CSS', isDone: true },
@@ -24,6 +13,19 @@ if (filter === 'completed') {
     { id: 5, title: 'Typescript', isDone: false },
     { id: 6, title: 'RTK query', isDone: false },
   ])
+  const [filter, setFilter] = useState<FilterValuesType>('all')
+
+  let tasksForTodolist = tasks
+ 
+  if (filter === 'active') {
+    tasksForTodolist = tasks.filter(task => !task.isDone)
+  }
+   
+  if (filter === 'completed') {
+    tasksForTodolist = tasks.filter(task => task.isDone)
+  }
+
+ 
  
   const removeTask = (taskId: number) => {
     const filteredTasks = tasks.filter(task => {
