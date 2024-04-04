@@ -6,7 +6,7 @@ function App() {
   // const titleNameOne = "Red todolistName";
   // const titleNameTwo = "Blue todolistName";
   // const titleNameThree = "Green todolistName";
-  const tasks_1: Array<TaskType> = [
+  let tasks_1: Array<TaskType> = [
     {
       id: 1,
       title: "HTML&CSS",
@@ -46,23 +46,23 @@ function App() {
   //   },
   // ];
 
-  const tasks_3: Array<TaskType> = [
-    {
-      id: 1,
-      title: "Dog",
-      isDone: true,
-    },
-    {
-      id: 2,
-      title: "Cat",
-      isDone: true,
-    },
-    {
-      id: 3,
-      title: "Fish",
-      isDone: false,
-    },
-  ];
+  // const tasks_3: Array<TaskType> = [
+  //   {
+  //     id: 1,
+  //     title: "Dog",
+  //     isDone: true,
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Cat",
+  //     isDone: true,
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "Fish",
+  //     isDone: false,
+  //   },
+  // ];
 
   const removeTask = (id: number) => {
     console.log(id);
