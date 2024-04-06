@@ -12,6 +12,7 @@ function App() {
     { id: 4, title: 'Redux', isDone: false },
     { id: 5, title: 'Typescript', isDone: false },
     { id: 6, title: 'RTK query', isDone: false },
+    
   ])
 
 const changeFilter = (filter: FilterValuesType) => {
