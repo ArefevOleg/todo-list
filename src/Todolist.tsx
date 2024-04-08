@@ -5,7 +5,7 @@ export const Todolist = ({ title, tasks, date, removeTask, changeFilter }: Props
   const tasksList = tasks.map((task) => {
     return (
       <li key={task.id}>
-        <input type="checkbox" checked={task.isDone} />{" "}
+        <input type="checkbox" checked={task.isDone} placeholder="search"/>{" "}
         <span>{task.title}</span>
         <Button title={'x'} onClick={() => alert(task.id)} />
       </li>
