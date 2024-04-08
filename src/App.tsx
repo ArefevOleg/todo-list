@@ -16,12 +16,12 @@ function App() {
   ])
 
 const changeFilter = (filter: FilterValuesType) => {
-  setFilter(filter)
+  setFilter(filter);
 }
 
   const [filter, setFilter] = useState<FilterValuesType>('all')
 
-  let tasksForTodolist = tasks
+  let tasksForTodolist = tasks;
  
   if (filter === 'active') {
     tasksForTodolist = tasks.filter(task => !task.isDone)
@@ -83,7 +83,7 @@ const changeFilter = (filter: FilterValuesType) => {
   return (
     <div className="App">
       <>
-      <Todolist title="Red todolistName" tasks={tasks} removeTask={removeTask} changeFilter = {changeFilter}/>
+      <Todolist title="Red todolistName" tasks={tasksForTodolist} removeTask={removeTask} changeFilter = {changeFilter}/>
       {/* <Todolist title="Blue todolistName" tasks={tasks_2} /> */}
       {/* <Todolist title="Green todolistName" tasks={tasks_3} date="01.01.2022" /> */}
       </>
