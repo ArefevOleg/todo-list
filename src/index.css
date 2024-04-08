@@ -20,8 +20,7 @@ code {
   border-radius: 10px;
 
   &:hover {
-    outline: 4px solid rgb(192, 43, 23);
-    background-color: rgb(10, 10, 10);
+    outline: 4px solid rgb(0, 0, 0);
   }
 
 
