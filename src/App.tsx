@@ -27,7 +27,7 @@ const changeFilter = (filter: FilterValuesType) => {
     tasksForTodolist = tasks.filter(task => !task.isDone)
   }
    
-  if (filter === 'completed') {
+  if (filter  === 'completed') {
     tasksForTodolist = tasks.filter(task => task.isDone)
   }
 
