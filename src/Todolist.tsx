@@ -4,7 +4,7 @@ import { Button } from "./Button";
 export const Todolist = ({ title, tasks, date, removeTask, changeFilter }: PropsType) => {
   const tasksList = tasks.map((task) => {
     return (
-      <li key={task.id}>
+      <li key={task.id}> 
         <input type="checkbox" checked={task.isDone} />{" "}
         <span>{task.title}</span>
         <Button title={'x'} onClick={() => removeTask(task.id)} />
