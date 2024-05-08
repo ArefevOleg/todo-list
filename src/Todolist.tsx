@@ -4,11 +4,12 @@ import { TaskType } from "./App"
 type PropsType = {
   title: string
   tasks: TaskType[]
+  date?: string
 }
 
 
 
-export const Todolist = ({title, tasks}: PropsType) => {
+export const Todolist = ({title, tasks, date}: PropsType) => {
   return (
     <TodolistWrapper>
       <h3>{title}</h3>
@@ -17,23 +18,20 @@ export const Todolist = ({title, tasks}: PropsType) => {
         <button>+</button>
       </div>
       <ul>
-        <li>
-          <input type="checkbox" checked={tasks[0].isDone} />
-           <span>{tasks[0].title}</span>
-        </li>
-        <li>
-          <input type="checkbox" checked={tasks[1].isDone} /> 
-          <span>{tasks[1].title}</span>
-        </li>
-        <li>
-          <input type="checkbox" checked={tasks[2].isDone} /> 
-          <span>{tasks[2].title}</span>
-        </li>
+        {tasks.map(task => {
+          return (
+            <li>
+              <input type="checkbox" checked={task.isDone} />
+              <span>{task.title}</span>
+            </li>
+          )
+        })}
       </ul>
       <div>
         <button>All</button>
         <button>Active</button>
         <button>Completed</button>
+        <div>{date}</div>
       </div>
     </TodolistWrapper>
   );

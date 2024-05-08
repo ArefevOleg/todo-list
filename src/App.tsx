@@ -15,17 +15,19 @@ function App() {
     { id: 1, title: "HTML&CSS", isDone: true },
     { id: 2, title: "JS", isDone: true },
     { id: 3, title: "ReactJS", isDone: false },
+    { id: 4, title: 'Redux', isDone: false },
   ];
 
   const tasks2: TaskType[] = [
     { id: 1, title: "Hello world", isDone: true },
     { id: 2, title: "I am Happy", isDone: false },
     { id: 3, title: "Yo", isDone: false },
+    { id: 4, title: 'Redux', isDone: false },
   ];
   return (
     <Wrapper>
-      <Todolist title="Songs" tasks={tasks1}/>
-      <Todolist title="Books" tasks={tasks2}/>
+      <Todolist title="Songs" tasks={tasks1} date={"13.13.1666"}/>
+      <Todolist title="Books" tasks={tasks2} />
     </Wrapper>
   );
 }
