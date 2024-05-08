@@ -1,12 +1,14 @@
 import styled from "styled-components";
+import { TaskType } from "./App"
 
 type PropsType = {
   title: string
+  tasks: TaskType[]
 }
 
 
 
-export const Todolist = ({title}: PropsType) => {
+export const Todolist = ({title, tasks}: PropsType) => {
   return (
     <TodolistWrapper>
       <h3>{title}</h3>
@@ -16,13 +18,16 @@ export const Todolist = ({title}: PropsType) => {
       </div>
       <ul>
         <li>
-          <input type="checkbox" checked={true} /> <span>HTML&CSS</span>
+          <input type="checkbox" checked={tasks[0].isDone} />
+           <span>{tasks[0].title}</span>
         </li>
         <li>
-          <input type="checkbox" checked={true} /> <span>JS</span>
+          <input type="checkbox" checked={tasks[1].isDone} /> 
+          <span>{tasks[1].title}</span>
         </li>
         <li>
-          <input type="checkbox" checked={false} /> <span>React</span>
+          <input type="checkbox" checked={tasks[2].isDone} /> 
+          <span>{tasks[2].title}</span>
         </li>
       </ul>
       <div>
