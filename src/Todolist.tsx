@@ -1,9 +1,15 @@
 import styled from "styled-components";
 
-export const Todolist = () => {
+type PropsType = {
+  title: string
+}
+
+
+
+export const Todolist = ({title}: PropsType) => {
   return (
     <TodolistWrapper>
-      <h3>What to learn</h3>
+      <h3>{title}</h3>
       <div>
         <input />
         <button>+</button>
@@ -30,8 +36,7 @@ export const Todolist = () => {
 
 export default Todolist;
 
-const TodolistWrapper = styled.div` 
-  margin: 30px;
+const TodolistWrapper = styled.div`
   padding: 20px;
   background-color: #08b140;
   max-width: 200px;
