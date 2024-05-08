@@ -17,7 +17,7 @@ function App() {
     setFilter(filter);
   };
 
-  const [filter, setFilter] = useState<FilterValuesType>("all");
+  const [filter, setFilter] = useState<FilterValuesType>("all"); //useState вместо  set state
 
   let tasksForTodolist = tasks;
 
