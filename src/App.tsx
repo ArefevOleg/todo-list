@@ -1,5 +1,5 @@
 import "./App.css";
-import { TodoLIst } from "./Todolist";
+import { TodoLIst } from "./TodoList";
 import React, { useState } from "react";
 import styled from "styled-components";
 
