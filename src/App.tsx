@@ -25,10 +25,12 @@ const booksListTwo: BooksType[] = [
 
 function App() {
   return (
+    <>
     <AppWrapper>
       <TodoLIst title="Ужасы" booksList={booksListOne} />
       <TodoLIst title="Метро 2033" booksList={booksListTwo} />
     </AppWrapper>
+    </>
   );
 }
 
