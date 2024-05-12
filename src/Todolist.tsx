@@ -6,9 +6,10 @@ type PropsType = {
   title: string;
   booksList: BooksType[];
   removeBooks: (booksId: number) => void;
+  chanheFilter: (filter: FilterValuesType) => void
 };
 
-export const TodoLIst = ({ title, booksList, removeBooks }: PropsType) => {
+export const TodoLIst = ({ title, booksList, removeBooks, chanheFilter }: PropsType) => {
   return (
     <BooksWrapper>
       <Title>{title}</Title>
@@ -21,7 +22,7 @@ export const TodoLIst = ({ title, booksList, removeBooks }: PropsType) => {
               <li>
                 <input type="checkbox" checked={books.isDone} />
                 <span>{books.name}</span>
-                <button onClick={() => removeBooks(books.id)}>x</button>
+                <Button title={"x"} onClick={() => removeBooks(books.id)} />
               </li>
             );
           })}
@@ -29,9 +30,9 @@ export const TodoLIst = ({ title, booksList, removeBooks }: PropsType) => {
       )}
 
       <div>
-        <Button title="All" />
-        <Button title="Active" />
-        <Button title="Completed" />
+        <Button onClick={() => chanheFilter("All")} />
+        <Button onClick={() => chanheFilter("Active")} />
+        <Button onClick={() => chanheFilter("Completed")} />
       </div>
     </BooksWrapper>
   );

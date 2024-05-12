@@ -9,37 +9,52 @@ export type BooksType = {
   isDone: boolean;
 };
 
-function 
+// let booksListTwo: BooksType[] = [
+//   { id: 1, name: "Странник", isDone: false },
+//   { id: 1, name: "Питер", isDone: true },
+//   { id: 1, name: "Север", isDone: true },
+//   { id: 1, name: "Крым", isDone: true },
+// ];
 
 
-
-let booksListOne: BooksType[] = [
-  { id: 1, name: "Судные дни", isDone: false },
-  { id: 1, name: "Дракула", isDone: true },
-  { id: 1, name: "Ритуал", isDone: true },
-  { id: 1, name: "Чужой", isDone: false },
-];
-
-let booksListTwo: BooksType[] = [
-  { id: 1, name: "Странник", isDone: false },
-  { id: 1, name: "Питер", isDone: true },
-  { id: 1, name: "Север", isDone: true },
-  { id: 1, name: "Крым", isDone: true },
-];
-
-const removeBooks = (booksId: number) => {
-  booksListOne = booksListOne.filter((books) => {
-    return books.id !== booksId
-  })
-  console.log(booksListOne)
-}
+export type FilterValuesType = 'All' | 'Active' | 'Completed'
 
 function App() {
+  const [booksList, setBooks] = useState<FilterValuesType>('all') (
+    [
+      { id: 1, name: "Судные дни", isDone: false },
+      { id: 2, name: "Дракула", isDone: true },
+      { id: 3, name: "Ритуал", isDone: true },
+      { id: 4, name: "Чужой", isDone: false },
+    ]);
+
+  const removeBooks = (booksId: number) => {
+  const filterBooksListOne = booksList.filter((books) => {
+    return books.id !== booksId;
+  });
+  setBooks(filterBooksListOne);
+};
+
+const [filter, setFilter] = useState("All")
+
+const chanheFilter = (filter: FilterValuesType) => {
+  setFilter(filter)
+}
+
+let booksForTodolist = booksList
+  if (filter === 'active') {
+    booksForTodolist = booksList.filter((book) => !book.isDone)
+  }
+
+  if (filter === 'completed') {
+    booksForTodolist = booksList.filter((book) => book.isDone)
+  }
+
   return (
     <>
       <AppWrapper>
-        <TodoLIst title="Ужасы" booksList={booksListOne} removeBooks={removeBooks}/>
-        <TodoLIst title="Метро 2033" booksList={booksListTwo} removeBooks={removeBooks}/>
+        {/* <TodoLIst title="Ужасы" removeBooks={removeBooks}/> */}
+        <TodoLIst title="Метро 2033" booksList={booksForTodolist} removeBooks={removeBooks} chanheFilter={chanheFilter}/>
       </AppWrapper>
     </>
   );

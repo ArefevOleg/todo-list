@@ -2,10 +2,11 @@ import styled from "styled-components";
 
 type ButtonType = {
   title: string;
+  onClick?: () => void
 };
 
-export const Button = ({ title }: ButtonType) => {
-  return <ButtonWrapper>{title}</ButtonWrapper>;
+export const Button = ({ title,  onClick}: ButtonType) => {
+  return <ButtonWrapper onClick={onClick}>{title}</ButtonWrapper>;
 };
 
 const ButtonWrapper = styled.button`
