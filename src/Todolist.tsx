@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import { BooksType } from "./App";
-import { Button } from "./Button"
+import { Button } from "./Button";
 
 type PropsType = {
   title: string;
   booksList: BooksType[];
+  removeBooks: (booksId: number) => void;
 };
 
-export const TodoLIst = ({ title, booksList }: PropsType) => {
+export const TodoLIst = ({ title, booksList, removeBooks }: PropsType) => {
   return (
     <BooksWrapper>
       <Title>{title}</Title>
@@ -16,11 +17,11 @@ export const TodoLIst = ({ title, booksList }: PropsType) => {
       ) : (
         <ListWrapper>
           {booksList.map((books) => {
-            debugger;
             return (
               <li>
                 <input type="checkbox" checked={books.isDone} />
                 <span>{books.name}</span>
+                <button onClick={() => removeBooks(books.id)}>x</button>
               </li>
             );
           })}
@@ -28,7 +29,9 @@ export const TodoLIst = ({ title, booksList }: PropsType) => {
       )}
 
       <div>
-      <Button title="All"/>
+        <Button title="All" />
+        <Button title="Active" />
+        <Button title="Completed" />
       </div>
     </BooksWrapper>
   );
@@ -41,10 +44,6 @@ const BooksWrapper = styled.div`
   color: black;
   min-width: 150px;
 
-  &:hover { 
-    outline: 1px solid red;
-  }
-
   &:last-child {
     background-color: #0bd15a;
   }
@@ -56,7 +55,6 @@ const ListWrapper = styled.div`
   gap: 5px;
   list-style-type: none;
   margin-bottom: 10px;
-  outline: 2px solid black;
   padding: 5px;
 `;
 const Title = styled.h3`
@@ -66,7 +64,6 @@ const Title = styled.h3`
 const NoList = styled.p`
   font-size: 18px;
   font-weight: 600;
-  margin: 5px;  
+  margin: 5px;
   color: #000000;
 `;
-  

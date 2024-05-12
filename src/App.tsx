@@ -9,27 +9,38 @@ export type BooksType = {
   isDone: boolean;
 };
 
-const booksListOne: BooksType[] = [
+function 
+
+
+
+let booksListOne: BooksType[] = [
   { id: 1, name: "Судные дни", isDone: false },
   { id: 1, name: "Дракула", isDone: true },
   { id: 1, name: "Ритуал", isDone: true },
   { id: 1, name: "Чужой", isDone: false },
 ];
 
-const booksListTwo: BooksType[] = [
+let booksListTwo: BooksType[] = [
   { id: 1, name: "Странник", isDone: false },
   { id: 1, name: "Питер", isDone: true },
   { id: 1, name: "Север", isDone: true },
   { id: 1, name: "Крым", isDone: true },
 ];
 
+const removeBooks = (booksId: number) => {
+  booksListOne = booksListOne.filter((books) => {
+    return books.id !== booksId
+  })
+  console.log(booksListOne)
+}
+
 function App() {
   return (
     <>
-    <AppWrapper>
-      <TodoLIst title="Ужасы" booksList={booksListOne} />
-      <TodoLIst title="Метро 2033" booksList={booksListTwo} />
-    </AppWrapper>
+      <AppWrapper>
+        <TodoLIst title="Ужасы" booksList={booksListOne} removeBooks={removeBooks}/>
+        <TodoLIst title="Метро 2033" booksList={booksListTwo} removeBooks={removeBooks}/>
+      </AppWrapper>
     </>
   );
 }
