@@ -2,6 +2,7 @@ import "./App.css";
 import { TodoLIst } from "./TodoList";
 import React, { useState } from "react";
 import styled from "styled-components";
+import { v1 } from "uuid";
 
 // let booksListTwo: BooksType[] = [
 //   { id: 1, name: "Судные дни", isDone: false },
@@ -19,16 +20,31 @@ export type BooksType = {
 export type FilterValuesType = "All" | "Active" | "Completed";
 
 function App() {
+  
+  const addBooks = () => {
+    const newBook: BooksType = {
+      id: v1(), // Генерируем уникальный ID
+      name: "Новая книга",
+      isDone: false,
+    };
+     // Добавляем новую книгу в начало списка booksList
+     const newBooks = [newBook, ...booksList];
+     setBooksList(newBooks); // Обновляем состояние booksList
+   };
+
+
+
   const [booksList, setBooksList] = useState<BooksType[]>([
     { id: v1(), name: "Странник", isDone: false },
     { id: v1(), name: "Питер", isDone: true },
     { id: v1(), name: "Север", isDone: true },
     { id: v1(), name: "Крым", isDone: true },
   ]);
+  // console.log(booksList);
 
   const [filter, setFilter] = useState<FilterValuesType>("All");
 
-  const removeBooks = (booksId: number) => {
+  const removeBooks = (booksId: string) => {
     const filteredBooksList = booksList.filter((book) => book.id !== booksId);
     setBooksList(filteredBooksList);
   };
@@ -52,6 +68,7 @@ function App() {
           booksList={booksForTodoList}
           removeBooks={removeBooks}
           changeFilter={changeFilter}
+          addBooks={addBooks}
         />
       </AppWrapper>
     </>

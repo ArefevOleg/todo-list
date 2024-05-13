@@ -6,14 +6,19 @@ import { BooksType, FilterValuesType } from './/App';
 type PropsType = {
   title: string;
   booksList: BooksType[];
-  removeBooks: (booksId: number) => void;
-  changeFilter: (newFilter: FilterValuesType) => void; 
+  removeBooks: (booksId: string) => void;
+  changeFilter: (newFilter: FilterValuesType) => void;
+  addBooks: () => void
 };
 
-export const TodoLIst = ({ title, booksList, removeBooks, changeFilter }: PropsType) => {
+export const TodoLIst = ({ title, booksList, removeBooks, changeFilter, addBooks }: PropsType) => {
   return (
     <BooksWrapper>
       <Title>{title}</Title>
+      <div>
+        <input />
+        <Button title={'+'} onClick={addBooks} />
+      </div>
       {booksList.length === 0 ? (
         <NoList>Список книг пуст</NoList>
       ) : (
