@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Button } from "./Button";
-import React, { useState } from "react"; // Импорт функции useState из библиотеки React
+import { ChangeEvent, useState, KeyboardEvent} from 'react' // Импорт функции из библиотеки React
 import { BooksType, FilterValuesType } from "./App"; // Импорт типов BooksType и FilterValuesType из файла App
 
 type PropsType = {
@@ -25,15 +25,27 @@ export const TodoList = ({
     setBookTitle(" ");
   };
 
+  const changerBookTitleHeandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setBookTitle(event.currentTarget.value)
+  }
+
+  const addBookOnKeyUpHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      addBooksHandler()
+    }
+  }
+
+  const changeFilterBooksHandler = (filter: FilterValuesType) => {
+    changeFilter(filter)
+  }
+
   return (
     <BooksWrapper>
       <Title>{title}</Title> {/* Отображение заголовка списка */}
       <div>
         <input
           value={bookTitle}
-          onChange={(event) => {
-            setBookTitle(event.currentTarget.value);
-          }}
+          onChange={changerBookTitleHeandler}
           onKeyUp={(event) => {
             if (event.key === 'Enter') {
               addBooksHandler();
@@ -48,27 +60,27 @@ export const TodoList = ({
       ) : (
         <ListWrapper>
           {booksList.map((book) => {
-            // Отображение списка книг
+            const removeBookHandler = () => {
+              removeBooks(book.id)
+            }
             return (
               <li key={book.id}>
-                <input type="checkbox" checked={book.isDone} />{" "}
-                {/* Флажок для отметки выполнения книги */}
-                <span>{book.title}</span> {/* Отображение имени книги */}
-                <Button title={"x"} onClick={() => removeBooks(book.id)} />{" "}
-                {/* Кнопка для удаления книги */}
+                <input type="checkbox" checked={book.isDone} />
+                <span>{book.title}</span> 
+                <Button title={"x"} onClick={removeBookHandler} />
               </li>
             );
           })}
         </ListWrapper>
       )}
       <div>
-        <Button title={"All"} onClick={() => changeFilter("All")} />{" "}
+        <Button title={"All"} onClick={() => changeFilterBooksHandler("all")} />
         {/* Кнопка для выбора всех книг */}
-        <Button title={"Active"} onClick={() => changeFilter("Active")} />{" "}
+        <Button title={"Active"} onClick={() => changeFilterBooksHandler("active")} />
         {/* Кнопка для выбора активных книг */}
         <Button
           title={"Completed"}
-          onClick={() => changeFilter("Completed")}
+          onClick={() => changeFilterBooksHandler("completed")}
         />{" "}
         {/* Кнопка для выбора завершенных книг */}
       </div>

@@ -10,7 +10,7 @@ export type BooksType = {
   isDone: boolean;
 };
 
-export type FilterValuesType = "All" | "Active" | "Completed";
+export type FilterValuesType = "all" | "active" | "completed";
 
 function App() {
   
@@ -36,7 +36,7 @@ function App() {
   ]);
 
   // Состояние для фильтрации списка книг
-  const [filter, setFilter] = useState<FilterValuesType>("All");
+  const [filter, setFilter] = useState<FilterValuesType>("all");
 
   // Функция для удаления книги из списка по ID
   const removeBooks = (booksId: string) => {
@@ -51,9 +51,9 @@ function App() {
 
   // Фильтрация списка книг в зависимости от выбранного фильтра
   let booksForTodoList = booksList;
-  if (filter === "Active") {
+  if (filter === "active") {
     booksForTodoList = booksList.filter((book) => !book.isDone);
-  } else if (filter === "Completed") {
+  } else if (filter === "completed") {
     booksForTodoList = booksList.filter((book) => book.isDone);
   }
 
