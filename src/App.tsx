@@ -11,7 +11,7 @@ import styled from "styled-components";
 // ];
 
 export type BooksType = {
-  id: number;
+  id: string;
   name: string;
   isDone: boolean;
 };
@@ -20,10 +20,10 @@ export type FilterValuesType = "All" | "Active" | "Completed";
 
 function App() {
   const [booksList, setBooksList] = useState<BooksType[]>([
-    { id: 1, name: "Странник", isDone: false },
-    { id: 2, name: "Питер", isDone: true },
-    { id: 3, name: "Север", isDone: true },
-    { id: 4, name: "Крым", isDone: true },
+    { id: v1(), name: "Странник", isDone: false },
+    { id: v1(), name: "Питер", isDone: true },
+    { id: v1(), name: "Север", isDone: true },
+    { id: v1(), name: "Крым", isDone: true },
   ]);
 
   const [filter, setFilter] = useState<FilterValuesType>("All");
