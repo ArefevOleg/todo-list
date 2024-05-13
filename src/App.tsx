@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 // let booksListTwo: BooksType[] = [
-//   { id: 1, name: "Странник", isDone: false },
-//   { id: 1, name: "Питер", isDone: true },
-//   { id: 1, name: "Север", isDone: true },
-//   { id: 1, name: "Крым", isDone: true },
+//   { id: 1, name: "Судные дни", isDone: false },
+// { id: 2, name: "Дракула", isDone: true },
+// { id: 3, name: "Ритуал", isDone: true },
+// { id: 4, name: "Чужой", isDone: false },
 // ];
 
 export type BooksType = {
@@ -16,17 +16,17 @@ export type BooksType = {
   isDone: boolean;
 };
 
-export type FilterValuesType = 'All' | 'Active' | 'Completed';
+export type FilterValuesType = "All" | "Active" | "Completed";
 
 function App() {
   const [booksList, setBooksList] = useState<BooksType[]>([
-    { id: 1, name: "Судные дни", isDone: false },
-    { id: 2, name: "Дракула", isDone: true },
-    { id: 3, name: "Ритуал", isDone: true },
-    { id: 4, name: "Чужой", isDone: false },
+    { id: 1, name: "Странник", isDone: false },
+    { id: 2, name: "Питер", isDone: true },
+    { id: 3, name: "Север", isDone: true },
+    { id: 4, name: "Крым", isDone: true },
   ]);
 
-  const [filter, setFilter] = useState<FilterValuesType>('All');
+  const [filter, setFilter] = useState<FilterValuesType>("All");
 
   const removeBooks = (booksId: number) => {
     const filteredBooksList = booksList.filter((book) => book.id !== booksId);
@@ -38,9 +38,9 @@ function App() {
   };
 
   let booksForTodoList = booksList;
-  if (filter === 'Active') {
+  if (filter === "Active") {
     booksForTodoList = booksList.filter((book) => !book.isDone);
-  } else if (filter === 'Completed') {
+  } else if (filter === "Completed") {
     booksForTodoList = booksList.filter((book) => book.isDone);
   }
 
@@ -51,7 +51,7 @@ function App() {
           title="Метро 2033"
           booksList={booksForTodoList}
           removeBooks={removeBooks}
-          changeFilter={changeFilter} 
+          changeFilter={changeFilter}
         />
       </AppWrapper>
     </>
