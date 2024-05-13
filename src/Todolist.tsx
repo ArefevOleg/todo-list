@@ -19,22 +19,29 @@ export const TodoList = ({
   addBooks,
 }: PropsType) => {
   const [bookTitle, setBookTitle] = useState(""); // Использование useState для управления состоянием заголовка книги
+
+  const addBooksHandler = () => {
+    addBooks(bookTitle);
+    setBookTitle(" ");
+  };
+
   return (
     <BooksWrapper>
       <Title>{title}</Title> {/* Отображение заголовка списка */}
       <div>
         <input
           value={bookTitle}
-          onChange={(event) => setBookTitle(event.currentTarget.value)}
-        />{" "}
-        {/* Поле ввода для добавления новой книги */}
-        <Button
-          title={"+"}
-          onClick={() => {
-            addBooks(bookTitle);
-            setBookTitle('');
+          onChange={(event) => {
+            setBookTitle(event.currentTarget.value);
+          }}
+          onKeyUp={(event) => {
+            if (event.key === 'Enter') {
+              addBooksHandler();
+            }
           }}
         />
+        {/* Поле ввода для добавления новой книги */}
+        <Button title={"+"} onClick={addBooksHandler} />
       </div>
       {booksList.length === 0 ? ( // Проверка, пуст ли список книг
         <NoList>Список книг пуст</NoList> // Отображение сообщения, если список пуст
