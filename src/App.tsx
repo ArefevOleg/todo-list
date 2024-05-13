@@ -42,12 +42,12 @@ const chanheFilter = (filter: FilterValuesType) => {
 }
 
 let booksForTodolist = booksList
-  if (filter === 'active') {
-    booksForTodolist = booksList.filter((book) => !book.isDone)
+  if (filter === 'Active') {
+    booksForTodolist = booksList.filter((books) => !books.isDone)
   }
 
-  if (filter === 'completed') {
-    booksForTodolist = booksList.filter((book) => book.isDone)
+  if (filter === 'Completed') {
+    booksForTodolist = booksList.filter((books) => books.isDone)
   }
 
   return (

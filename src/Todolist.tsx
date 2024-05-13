@@ -30,9 +30,9 @@ export const TodoLIst = ({ title, booksList, removeBooks, chanheFilter }: PropsT
       )}
 
       <div>
-        <Button onClick={() => chanheFilter("All")} />
-        <Button onClick={() => chanheFilter("Active")} />
-        <Button onClick={() => chanheFilter("Completed")} />
+        <Button title={"All"} onClick={() => chanheFilter("All")} />
+        <Button title={"Active"} onClick={() => chanheFilter("Active")} />
+        <Button title={"Completed"} onClick={() => chanheFilter("Completed")} />
       </div>
     </BooksWrapper>
   );
