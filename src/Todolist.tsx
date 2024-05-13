@@ -1,44 +1,69 @@
 import styled from "styled-components";
 import { Button } from "./Button";
-
-import { BooksType, FilterValuesType } from './/App';
+import React, { useState } from "react"; // Импорт функции useState из библиотеки React
+import { BooksType, FilterValuesType } from "./App"; // Импорт типов BooksType и FilterValuesType из файла App
 
 type PropsType = {
   title: string;
-  booksList: BooksType[];
-  removeBooks: (booksId: string) => void;
-  changeFilter: (newFilter: FilterValuesType) => void;
-  addBooks: () => void
+  booksList: BooksType[]; // Массив объектов типа BooksType, представляющих список книг
+  removeBooks: (booksId: string) => void; // Функция для удаления книги по её ID
+  changeFilter: (newFilter: FilterValuesType) => void; // Функция для изменения фильтра списка книг
+  addBooks: (title: string) => void; // Функция для добавления новой книги
 };
 
-export const TodoLIst = ({ title, booksList, removeBooks, changeFilter, addBooks }: PropsType) => {
+export const TodoList = ({
+  title,
+  booksList,
+  removeBooks,
+  changeFilter,
+  addBooks,
+}: PropsType) => {
+  const [bookTitle, setBookTitle] = useState(""); // Использование useState для управления состоянием заголовка книги
   return (
     <BooksWrapper>
-      <Title>{title}</Title>
+      <Title>{title}</Title> {/* Отображение заголовка списка */}
       <div>
-        <input />
-        <Button title={'+'} onClick={addBooks} />
+        <input
+          value={bookTitle}
+          onChange={(event) => setBookTitle(event.currentTarget.value)}
+        />{" "}
+        {/* Поле ввода для добавления новой книги */}
+        <Button
+          title={"+"}
+          onClick={() => {
+            addBooks(bookTitle);
+            setBookTitle('');
+          }}
+        />
       </div>
-      {booksList.length === 0 ? (
-        <NoList>Список книг пуст</NoList>
+      {booksList.length === 0 ? ( // Проверка, пуст ли список книг
+        <NoList>Список книг пуст</NoList> // Отображение сообщения, если список пуст
       ) : (
         <ListWrapper>
-          {booksList.map((books) => {
+          {booksList.map((book) => {
+            // Отображение списка книг
             return (
-              <li>
-                <input type="checkbox" checked={books.isDone} />
-                <span>{books.name}</span>
-                <Button title={"x"} onClick={() => removeBooks(books.id)} />
+              <li key={book.id}>
+                <input type="checkbox" checked={book.isDone} />{" "}
+                {/* Флажок для отметки выполнения книги */}
+                <span>{book.title}</span> {/* Отображение имени книги */}
+                <Button title={"x"} onClick={() => removeBooks(book.id)} />{" "}
+                {/* Кнопка для удаления книги */}
               </li>
             );
           })}
         </ListWrapper>
       )}
-
       <div>
-        <Button title={"All"} onClick={() => changeFilter("All")} />
-        <Button title={"Active"} onClick={() => changeFilter("Active")} />
-        <Button title={"Completed"} onClick={() => changeFilter("Completed")} />
+        <Button title={"All"} onClick={() => changeFilter("All")} />{" "}
+        {/* Кнопка для выбора всех книг */}
+        <Button title={"Active"} onClick={() => changeFilter("Active")} />{" "}
+        {/* Кнопка для выбора активных книг */}
+        <Button
+          title={"Completed"}
+          onClick={() => changeFilter("Completed")}
+        />{" "}
+        {/* Кнопка для выбора завершенных книг */}
       </div>
     </BooksWrapper>
   );
@@ -64,6 +89,7 @@ const ListWrapper = styled.div`
   margin-bottom: 10px;
   padding: 5px;
 `;
+
 const Title = styled.h3`
   text-align: center;
 `;
@@ -74,3 +100,14 @@ const NoList = styled.p`
   margin: 5px;
   color: #000000;
 `;
+
+// Комментарии добавлены к каждому важному блоку кода:
+
+// PropsType: Определение типов пропсов для компонента TodoList.
+// TodoList: Компонент для отображения списка книг и управления им.
+// BooksWrapper: Стилизованный контейнер для списка книг.
+// inputRef: Создание ссылки на input элемент для доступа к его значению.
+// Добавление книги: Обработка события клика на кнопку "+" для добавления новой книги.
+// Отображение списка книг: Отображение списка книг с возможностью удаления и изменения статуса.
+// Кнопки фильтрации: Кнопки для выбора различных фильтров списка книг.
+// Стили: Стилизация компонентов с использованием библиотеки styled-components.
