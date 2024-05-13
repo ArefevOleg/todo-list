@@ -1,15 +1,16 @@
 import styled from "styled-components";
-import { BooksType } from "./App";
 import { Button } from "./Button";
+
+import { BooksType, FilterValuesType } from './/App';
 
 type PropsType = {
   title: string;
   booksList: BooksType[];
   removeBooks: (booksId: number) => void;
-  chanheFilter: (filter: FilterValuesType) => void
+  changeFilter: (newFilter: FilterValuesType) => void; 
 };
 
-export const TodoLIst = ({ title, booksList, removeBooks, chanheFilter }: PropsType) => {
+export const TodoLIst = ({ title, booksList, removeBooks, changeFilter }: PropsType) => {
   return (
     <BooksWrapper>
       <Title>{title}</Title>
@@ -30,9 +31,9 @@ export const TodoLIst = ({ title, booksList, removeBooks, chanheFilter }: PropsT
       )}
 
       <div>
-        <Button title={"All"} onClick={() => chanheFilter("All")} />
-        <Button title={"Active"} onClick={() => chanheFilter("Active")} />
-        <Button title={"Completed"} onClick={() => chanheFilter("Completed")} />
+        <Button title={"All"} onClick={() => changeFilter("All")} />
+        <Button title={"Active"} onClick={() => changeFilter("Active")} />
+        <Button title={"Completed"} onClick={() => changeFilter("Completed")} />
       </div>
     </BooksWrapper>
   );

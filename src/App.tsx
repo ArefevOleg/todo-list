@@ -3,12 +3,6 @@ import { TodoLIst } from "./TodoList";
 import React, { useState } from "react";
 import styled from "styled-components";
 
-export type BooksType = {
-  id: number;
-  name: string;
-  isDone: boolean;
-};
-
 // let booksListTwo: BooksType[] = [
 //   { id: 1, name: "Странник", isDone: false },
 //   { id: 1, name: "Питер", isDone: true },
@@ -16,45 +10,49 @@ export type BooksType = {
 //   { id: 1, name: "Крым", isDone: true },
 // ];
 
-
-export type FilterValuesType = 'All' | 'Active' | 'Completed'
-
-function App() {
-  const [booksList, setBooks] = useState<FilterValuesType>('all') (
-    [
-      { id: 1, name: "Судные дни", isDone: false },
-      { id: 2, name: "Дракула", isDone: true },
-      { id: 3, name: "Ритуал", isDone: true },
-      { id: 4, name: "Чужой", isDone: false },
-    ]);
-
-  const removeBooks = (booksId: number) => {
-  const filterBooksListOne = booksList.filter((books) => {
-    return books.id !== booksId;
-  });
-  setBooks(filterBooksListOne);
+export type BooksType = {
+  id: number;
+  name: string;
+  isDone: boolean;
 };
 
-const [filter, setFilter] = useState("All")
+export type FilterValuesType = 'All' | 'Active' | 'Completed';
 
-const chanheFilter = (filter: FilterValuesType) => {
-  setFilter(filter)
-}
+function App() {
+  const [booksList, setBooksList] = useState<BooksType[]>([
+    { id: 1, name: "Судные дни", isDone: false },
+    { id: 2, name: "Дракула", isDone: true },
+    { id: 3, name: "Ритуал", isDone: true },
+    { id: 4, name: "Чужой", isDone: false },
+  ]);
 
-let booksForTodolist = booksList
+  const [filter, setFilter] = useState<FilterValuesType>('All');
+
+  const removeBooks = (booksId: number) => {
+    const filteredBooksList = booksList.filter((book) => book.id !== booksId);
+    setBooksList(filteredBooksList);
+  };
+
+  const changeFilter = (newFilter: FilterValuesType) => {
+    setFilter(newFilter);
+  };
+
+  let booksForTodoList = booksList;
   if (filter === 'Active') {
-    booksForTodolist = booksList.filter((books) => !books.isDone)
-  }
-
-  if (filter === 'Completed') {
-    booksForTodolist = booksList.filter((books) => books.isDone)
+    booksForTodoList = booksList.filter((book) => !book.isDone);
+  } else if (filter === 'Completed') {
+    booksForTodoList = booksList.filter((book) => book.isDone);
   }
 
   return (
     <>
       <AppWrapper>
-        {/* <TodoLIst title="Ужасы" removeBooks={removeBooks}/> */}
-        <TodoLIst title="Метро 2033" booksList={booksForTodolist} removeBooks={removeBooks} chanheFilter={chanheFilter}/>
+        <TodoLIst
+          title="Метро 2033"
+          booksList={booksForTodoList}
+          removeBooks={removeBooks}
+          changeFilter={changeFilter} 
+        />
       </AppWrapper>
     </>
   );
