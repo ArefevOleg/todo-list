@@ -46,11 +46,7 @@ export const TodoList = ({
         <input
           value={bookTitle}
           onChange={changerBookTitleHeandler}
-          onKeyUp={(event) => {
-            if (event.key === 'Enter') {
-              addBooksHandler();
-            }
-          }}
+          onKeyUp={addBookOnKeyUpHandler}
         />
         {/* Поле ввода для добавления новой книги */}
         <Button title={"+"} onClick={addBooksHandler} />

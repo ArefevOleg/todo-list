@@ -30,7 +30,7 @@ function App() {
   // Состояние для списка книг
   const [booksList, setBooksList] = useState<BooksType[]>([
     { id: v1(), title: "Странник", isDone: false },
-    { id: v1(), title: "Питер", isDone: true },
+    { id: v1(), title: "Питер", isDone: false },
     { id: v1(), title: "Север", isDone: true },
     { id: v1(), title: "Крым", isDone: true },
   ]);
