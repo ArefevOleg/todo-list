@@ -49,6 +49,15 @@ function App() {
     setFilter(newFilter); // Обновляем состояние filter
   };
 
+  // изменения статуса книги
+  const changeBookStatus = (bookId: string, newStatus: boolean) => {
+    const updatedBooks = booksList.map((book) =>
+      book.id === bookId ? { ...book, isDone: newStatus } : book
+    );
+    setBooksList(updatedBooks); 
+  };
+  
+
   // Фильтрация списка книг в зависимости от выбранного фильтра
   let booksForTodoList = booksList;
   if (filter === "active") {
@@ -67,6 +76,7 @@ function App() {
           removeBooks={removeBooks}
           changeFilter={changeFilter}
           addBooks={addBooks}
+          changeBookStatus={changeBookStatus}
         />
       </AppWrapper>
     </>
@@ -81,18 +91,3 @@ const AppWrapper = styled.div`
   display: flex;
   gap: 20px;
 `;
-
-
-// Комментарии добавлены к следующим частям кода:
-
-// import: Импорт необходимых модулей и компонентов.
-// BooksType и FilterValuesType: Определение типов данных для книг и фильтров.
-// useState: Использование хуков useState для управления состоянием.
-// addBooks: Функция для добавления новой книги в список.
-// booksList: Состояние списка книг.
-// removeBooks: Функция для удаления книги из списка по ID.
-// changeFilter: Функция для изменения текущего фильтра списка.
-// filter: Состояние текущего фильтра списка.
-// booksForTodoList: Фильтрация списка книг в зависимости от выбранного фильтра.
-// TodoList: Использование компонента TodoList для отображения списка книг с применением фильтрации и управлением состоянием.
-// AppWrapper: Стилизованный контейнер для компонента App.

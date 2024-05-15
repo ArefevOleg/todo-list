@@ -11,7 +11,6 @@ export const Button = ({ title,  onClick}: ButtonType) => {
 
 const ButtonWrapper = styled.button`
   cursor: pointer;
-  margin: 5px;
   border-radius: 5px;
 
   &:active {

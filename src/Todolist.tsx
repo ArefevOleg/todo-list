@@ -9,6 +9,7 @@ type PropsType = {
   removeBooks: (booksId: string) => void; // Функция для удаления книги по её ID
   changeFilter: (newFilter: FilterValuesType) => void; // Функция для изменения фильтра списка книг
   addBooks: (title: string) => void; // Функция для добавления новой книги
+  changeBookStatus: (booksId: string, newStatusValue: boolean) => void; // Функция для изменения статуса книги
 };
 
 export const TodoList = ({
@@ -17,26 +18,40 @@ export const TodoList = ({
   removeBooks,
   changeFilter,
   addBooks,
+  changeBookStatus,
 }: PropsType) => {
   const [bookTitle, setBookTitle] = useState(""); // Использование useState для управления состоянием заголовка книги
 
-  const addBooksHandler = () => {
-    addBooks(bookTitle);
-    setBookTitle(" ");
+  // Обработчик добавления новой книги
+const addBooksHandler = () => {
+    // Проверяем, что заголовок книги (bookTitle) не пустой после удаления начальных и конечных пробелов
+    if (bookTitle.trim() !== "") {
+      // Если заголовок книги не пустой, вызываем функцию addBooks, передавая в нее заголовок (обрезанный от лишних пробелов)
+      addBooks(bookTitle.trim());
+      setBookTitle(""); // Очистка поля ввода после добавления книги
+    }
   };
-
-  const changerBookTitleHeandler = (event: ChangeEvent<HTMLInputElement>) => {
-    setBookTitle(event.currentTarget.value)
+  // Обработчик изменения заголовка книги
+  const changeBookTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    setBookTitle(event.currentTarget.value); // Обновление состояния заголовка книги
   }
 
+  // Обработчик нажатия клавиши Enter для добавления книги
   const addBookOnKeyUpHandler = (event: KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      addBooksHandler()
+      addBooksHandler(); // Вызов функции добавления книги при нажатии Enter
     }
   }
 
+  // Обработчик изменения фильтра списка книг
   const changeFilterBooksHandler = (filter: FilterValuesType) => {
-    changeFilter(filter)
+    changeFilter(filter); // Вызов функции изменения фильтра из компонента App
+  }
+
+  // Обработчик изменения статуса книги
+  const changeBookStatusHandler = (book: BooksType, e: ChangeEvent<HTMLInputElement>) => {
+    const newStatusValue = e.currentTarget.checked; // Получение нового значения статуса книги
+    changeBookStatus(book.id, newStatusValue); // Вызов функции изменения статуса книги из компонента App
   }
 
   return (
@@ -45,7 +60,7 @@ export const TodoList = ({
       <div>
         <input
           value={bookTitle}
-          onChange={changerBookTitleHeandler}
+          onChange={changeBookTitleHandler}
           onKeyUp={addBookOnKeyUpHandler}
         />
         {/* Поле ввода для добавления новой книги */}
@@ -57,19 +72,22 @@ export const TodoList = ({
         <ListWrapper>
           {booksList.map((book) => {
             const removeBookHandler = () => {
-              removeBooks(book.id)
+              removeBooks(book.id); // Вызов функции удаления книги из компонента App
             }
             return (
               <li key={book.id}>
-                <input type="checkbox" checked={book.isDone} />
+                <input type="checkbox" checked={book.isDone} onChange={(e) => changeBookStatusHandler(book, e)}/>
+                {/* Флажок для отметки выполнения книги */}
                 <span>{book.title}</span> 
+                {/* Отображение имени книги */}
                 <Button title={"x"} onClick={removeBookHandler} />
+                {/* Кнопка для удаления книги */}
               </li>
             );
           })}
         </ListWrapper>
       )}
-      <div>
+      <ButtonWrapper>
         <Button title={"All"} onClick={() => changeFilterBooksHandler("all")} />
         {/* Кнопка для выбора всех книг */}
         <Button title={"Active"} onClick={() => changeFilterBooksHandler("active")} />
@@ -79,21 +97,17 @@ export const TodoList = ({
           onClick={() => changeFilterBooksHandler("completed")}
         />{" "}
         {/* Кнопка для выбора завершенных книг */}
-      </div>
+      </ButtonWrapper>
     </BooksWrapper>
   );
 };
 
 const BooksWrapper = styled.div`
   padding: 20px;
-  background-color: #10b2c0;
+  background-color: #060606;
   border: 3px solid black;
-  color: black;
+  color: white;
   min-width: 150px;
-
-  &:last-child {
-    background-color: #0bd15a;
-  }
 `;
 
 const ListWrapper = styled.div`
@@ -116,13 +130,6 @@ const NoList = styled.p`
   color: #000000;
 `;
 
-// Комментарии добавлены к каждому важному блоку кода:
-
-// PropsType: Определение типов пропсов для компонента TodoList.
-// TodoList: Компонент для отображения списка книг и управления им.
-// BooksWrapper: Стилизованный контейнер для списка книг.
-// inputRef: Создание ссылки на input элемент для доступа к его значению.
-// Добавление книги: Обработка события клика на кнопку "+" для добавления новой книги.
-// Отображение списка книг: Отображение списка книг с возможностью удаления и изменения статуса.
-// Кнопки фильтрации: Кнопки для выбора различных фильтров списка книг.
-// Стили: Стилизация компонентов с использованием библиотеки styled-components.
+const ButtonWrapper = styled.div`
+  display: flexbox;
+`
