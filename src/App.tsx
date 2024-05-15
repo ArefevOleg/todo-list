@@ -71,6 +71,7 @@ function App() {
     <>
       <AppWrapper>
         <TodoList
+        filter={filter}
           title="Метро 2033"
           booksList={booksForTodoList}
           removeBooks={removeBooks}

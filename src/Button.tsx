@@ -3,10 +3,11 @@ import styled from "styled-components";
 type ButtonType = {
   title: string;
   onClick?: () => void
+  className?: string
 };
 
-export const Button = ({ title,  onClick}: ButtonType) => {
-  return <ButtonWrapper onClick={onClick}>{title}</ButtonWrapper>;
+export const Button = ({ title,  onClick, className}: ButtonType) => {
+  return <ButtonWrapper className={className} onClick={onClick}>{title}</ButtonWrapper>;
 };
 
 const ButtonWrapper = styled.button`
