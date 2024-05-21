@@ -10,6 +10,12 @@ export type BooksType = {
   isDone: boolean;
 };
 
+type TodolistType = {
+  id: string
+  title: string
+  filter: FilterValuesType
+}
+
 export type FilterValuesType = "all" | "active" | "completed";
 
 function App() {
@@ -66,13 +72,23 @@ function App() {
     booksForTodoList = booksList.filter((book) => book.isDone);
   }
 
+
+
+  let [todolists, setTodolists] = useState<TodolistType[]>([
+    { id: v1(), title: 'What to learn', filter: 'all' },
+    { id: v1(), title: 'What to buy', filter: 'all' },
+  ])
   // Отображение компонента TodoList с передачей необходимых пропсов
   return (
     <>
-      <AppWrapper>
+
+    {todolists. map((el) => {
+      return (
+        <AppWrapper>
         <TodoList
-        filter={filter}
-          title="Метро 2033"
+        key={el.id}
+         filter={el.filter}
+          title={el.title}
           booksList={booksForTodoList}
           removeBooks={removeBooks}
           changeFilter={changeFilter}
@@ -80,6 +96,12 @@ function App() {
           changeBookStatus={changeBookStatus}
         />
       </AppWrapper>
+      )
+    })
+    
+    
+    }
+     
     </>
   );
 }
