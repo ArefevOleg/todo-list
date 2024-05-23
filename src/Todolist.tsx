@@ -1,5 +1,6 @@
 import {TaskType} from "./App";
 import {Button} from "./Button";
+import styled from 'styled-components';
 
 type PropsType = {
     title: string
@@ -22,7 +23,15 @@ export const TodoList = ({title, tasks}: PropsType) => {
                     )
                 })}
             </ul>
-            <Button name={"ALL"} />
+            <ButtonWrapper>
+                <Button name={"ALL"} />
+                <Button name={"Active"} />
+                <Button name={"Completed"} />
+            </ButtonWrapper>
         </div>
     )
 }
+
+const  ButtonWrapper = styled.div`
+    display: flex;
+`
