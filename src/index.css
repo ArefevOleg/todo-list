@@ -20,3 +20,7 @@ code {
   justify-content: center;
   align-items: center;
 }
+
+ul {
+  list-style: none;
+}
