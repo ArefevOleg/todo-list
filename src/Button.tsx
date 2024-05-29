@@ -1,13 +1,8 @@
-import styled from 'styled-components';
-
-export type ButtonType = {
+type TypeBtn = {
     name: string
+    callBack: () => void
 }
 
-export const Button = ({name}: ButtonType) => {
-    return (
-        <div>
-            <button>{name}</button>
-        </div>
-    )
+export const Button = ({name, callBack}: TypeBtn) => {
+    return (<button onClick={callBack}>{name}</button>)
 }

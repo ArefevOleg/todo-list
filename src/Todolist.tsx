@@ -1,37 +1,39 @@
-import {TaskType} from "./App";
 import {Button} from "./Button";
-import styled from 'styled-components';
+import {FilterType, TaskType} from "./App";
 
 type PropsType = {
     title: string
     tasks: TaskType[]
+    changeFilter: (filter: FilterType) => void
+    removeTasks: (taskId: string) => void
 }
 
-export const TodoList = ({title, tasks}: PropsType) => {
+export const Todolist = ({title, tasks, changeFilter, removeTasks}: PropsType) => {
     return (
         <div>
             <h3>{title}</h3>
             <input type="text"/>
-            <button>+</button>
-            <ul>
-                {tasks.map((el) => {
-                    return (
-                        <li key={el.id}>
-                            <input type="checkbox" checked={el.isDone}/>
-                            <span>{el.title}</span>
-                        </li>
-                    )
-                })}
-            </ul>
-            <ButtonWrapper>
-                <Button name={"ALL"} />
-                <Button name={"Active"} />
-                <Button name={"Completed"} />
-            </ButtonWrapper>
+            <Button name={"+"} callBack={() => ("+")}/>
+            <div>
+                {tasks.length === 0 ? (
+                    <span>тасок нет</span>
+                ) : (
+                    <ul>
+                        {tasks.map(task => {
+                            return (
+                                <li key={task.id}>
+                                    <input type="checkbox" checked={task.isDone}/>
+                                    <span>{task.title}</span>
+                                    <Button name={"x"} callBack={() => removeTasks(task.id)}/>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                )}
+            </div>
+            <Button name={"All"} callBack={() => changeFilter("All")}/>
+            <Button name={"Completed"} callBack={() => changeFilter("Completed")}/>
+            <Button name={"Active"} callBack={() => changeFilter("Active")}/>
         </div>
     )
 }
-
-const  ButtonWrapper = styled.div`
-    display: flex;
-`
