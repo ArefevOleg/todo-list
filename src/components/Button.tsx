@@ -1,14 +1,10 @@
-import {ButtonHTMLAttributes} from "react";
-
-type TypeBtn = {
+type ButtonType = {
     name: string
     callBack: () => void
-    // children: React.ReactNode
-}& ButtonHTMLAttributes<HTMLButtonElement>
-
-export const Button = ({ name,callBack,...restProps}: TypeBtn) => {
-    const onclickHandler = () => {
-            callBack()
+}
+export const Button = ({name, callBack}: ButtonType) => {
+    const onClickHandler = () => {
+        callBack()
     }
-    return <button onClick={onclickHandler} {...restProps}>{name}</button>
+    return (<button onClick={onClickHandler}>{name}</button>)
 }
