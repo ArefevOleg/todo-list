@@ -1,10 +1,13 @@
-type ButtonType = {
+type BtnType = {
     name: string
-    callBack: () => void
+    onClick: () => void
 }
-export const Button = ({name, callBack}: ButtonType) => {
+
+
+export const Button = ({name, onClick}: BtnType) => {
     const onClickHandler = () => {
-        callBack()
+        onClick()
     }
-    return (<button onClick={onClickHandler}>{name}</button>)
-}
+    return <button onClick={onClickHandler}>{name}</button>
+};
+
