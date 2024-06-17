@@ -3,7 +3,6 @@ type BtnType = {
     onClick: () => void
 }
 
-
 export const Button = ({name, onClick}: BtnType) => {
     const onClickHandler = () => {
         onClick()
