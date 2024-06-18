@@ -19,7 +19,33 @@ code {
   margin-left: 100px;
 }
 
-ul {
+
+.box-list {
   list-style: none;
+  padding-left: 0;
+  display: flex;
+  background: #354949;
+  max-width: 180px;
 }
 
+.item {
+  display: flex;
+  gap: 5px;
+
+}
+
+.error {
+  border: red 1px solid;
+}
+
+.error-message {
+  color: red;
+}
+
+.active-filter {
+  background-color: lightgreen;
+}
+
+.is-done {
+  opacity: 0.5;
+}

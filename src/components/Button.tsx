@@ -1,12 +1,18 @@
+import styled from 'styled-components';
+
 type BtnType = {
     name: string
     onClick: () => void
+    className?: string
 }
 
-export const Button = ({name, onClick}: BtnType) => {
+export const Button = ({name, onClick, className }: BtnType) => {
     const onClickHandler = () => {
         onClick()
     }
-    return <button onClick={onClickHandler}>{name}</button>
+    return <Btn className={className}  onClick={onClickHandler}>{name}</Btn>
 };
 
+const Btn = styled.button`
+    cursor: pointer;
+`
