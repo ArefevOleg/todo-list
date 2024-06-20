@@ -69,7 +69,6 @@ const App = () => {
     return (
         <div className="app">
             {todolists.map(tl => {
-                /////////// фильтрация тасок //////////
                 const allTodolistTasks = tasks[tl.id]
                 let tasksForTodolist = allTodolistTasks
 

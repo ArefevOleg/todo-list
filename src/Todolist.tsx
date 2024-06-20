@@ -60,7 +60,7 @@ export const TodoList = ({name, tasks, removeTask, addTask, changeFilter, change
 
                     const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                         const newStatusValue = e.currentTarget.checked
-                        changeTaskStatus(task.id, )
+                        changeTaskStatus(task.id, task.isDone,todolistId)
                     }
                     return (
                         <ul className="box-list">
