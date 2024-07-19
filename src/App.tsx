@@ -51,6 +51,11 @@ const removeTask = (taskId: string) => {
         setTasks(newTasks)
     }
 
+    const changeTaskStatus = (taskId: string, taskStatus: boolean) => {
+        const newState = tasks.map(task => (task.id == taskId ? { ...task, isDone: taskStatus } : task))
+        setTasks(newState)
+    }
+
     return (
         <div className="app">
             <TodoList title="What to learn"
@@ -58,6 +63,7 @@ const removeTask = (taskId: string) => {
                       removeTask={removeTask}
                       changeFilter={changeFilter}
                       addTask={addTask}
+                      changeTaskStatus={changeTaskStatus}
             />
         </div>
     )

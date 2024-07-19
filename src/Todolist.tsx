@@ -10,21 +10,34 @@ type TodoListPropsType = {
     removeTask: (taskId: string) => void
     changeFilter: (filter: FilterValuesType) => void
     addTask: (taskTitle: string) => void
+    changeTaskStatus: (taskId: string, taskStatus: boolean) => void
 }
 
 
-export const TodoList = ({title, tasks,removeTask,changeFilter,addTask}: TodoListPropsType) => {
+export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTaskStatus}: TodoListPropsType) => {
     const [taskTitle, setTaskTitle] = useState('')
+    const [error, setError] = useState<string | null>(null)
+
+    const changeTaskStatusHandler = (taskId: string,e: ChangeEvent<HTMLInputElement>) => {
+        const newStatusValue = e.currentTarget.checked
+        changeTaskStatus(taskId, newStatusValue)
+    }
 
     const addTaskHandler = () => {
-        addTask(taskTitle)
-        setTaskTitle('')
+        if (taskTitle.trim() !== '') {
+            addTask(taskTitle.trim())
+            setTaskTitle('')
+        } else {
+            setError('Title is required')
+        }
     }
+
     const changeTaskTitleHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setTaskTitle(event.currentTarget.value)
     }
 
     const addTaskOnKeyUpHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        setError(null)
         if (event.key === 'Enter') {
             addTaskHandler()
         }
@@ -39,6 +52,7 @@ export const TodoList = ({title, tasks,removeTask,changeFilter,addTask}: TodoLis
             <h3>{title}</h3>
             <div>
                 <input value={taskTitle}
+                       style={{ color: theme.error.border}}
                        onChange={changeTaskTitleHandler}
                        onKeyUp={addTaskOnKeyUpHandler}
                 />
@@ -48,6 +62,7 @@ export const TodoList = ({title, tasks,removeTask,changeFilter,addTask}: TodoLis
                         onClick={addTaskHandler}
                         padding="3px"
                         margin ="3px" />
+                {error && <div style={{ color: theme.error.color}}>{error}</div>}
             </div>
             <ul>
                 {tasks.length === 0 ? (
@@ -59,7 +74,7 @@ export const TodoList = ({title, tasks,removeTask,changeFilter,addTask}: TodoLis
                         }
                         return (
                             <li key={el.id}>
-                                <input type="checkbox" checked={el.isDone}/>
+                                <input type="checkbox" checked={el.isDone} onChange={(e) => changeTaskStatusHandler(el.id, e)}/>
                                 <TaskName>{el.title}</TaskName>
                                 <Button name="x"
                                         padding="2px"
