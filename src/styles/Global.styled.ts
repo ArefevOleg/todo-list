@@ -41,4 +41,8 @@ export const GlobalStyle = createGlobalStyle`
         cursor: pointer;
         color: ${theme.colors.fontBlack};
     }
+
+    .is-done {
+        opacity: 0.5;
+    }
 `
