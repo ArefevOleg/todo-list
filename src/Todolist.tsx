@@ -6,15 +6,28 @@ import { theme } from "./styles/Theme";
 
 type TodoListPropsType = {
     title: string
+    todolistId: string
     tasks: TaskType[]
+    filter: FilterValuesType
     removeTask: (taskId: string) => void
-    changeFilter: (filter: FilterValuesType) => void
+    changeFilter: (todolistId: string, filter: FilterValuesType) => void
     addTask: (taskTitle: string) => void
     changeTaskStatus: (taskId: string, taskStatus: boolean) => void
 }
 
 
-export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTaskStatus}: TodoListPropsType) => {
+export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTaskStatus, todolistId}: TodoListPropsType) => {
+    // todo: переести
+    // let tasksForTodolist = tasks
+    // if (tl.filter === 'active') {
+    //     tasksForTodolist = tasks.filter(task => task.isDone === false)
+    // }
+    //
+    // if (tl.filter === 'completed') {
+    //     tasksForTodolist = tasks.filter(task => task.isDone === true)
+    // }
+    //
+
     const [taskTitle, setTaskTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
 
@@ -44,7 +57,7 @@ export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTas
     }
 
     const changeFilterTasksHandler = (filter: FilterValuesType) => {
-        changeFilter(filter)
+        changeFilter(todolistId, filter)
     }
 
     return (
