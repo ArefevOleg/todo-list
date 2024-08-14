@@ -7,16 +7,17 @@ import { theme } from "./styles/Theme";
 type TodoListPropsType = {
     title: string
     todolistId: string
+    removeTodolist: (todolistId: string) => void
     tasks: TaskType[]
     filter: FilterValuesType
-    removeTask: (taskId: string) => void
+    removeTask: (taskId: string, todolistId: string) => void
     changeFilter: (todolistId: string, filter: FilterValuesType) => void
-    addTask: (taskTitle: string) => void
-    changeTaskStatus: (taskId: string, taskStatus: boolean) => void
+    addTask: (taskTitle: string, todolistId: string) => void
+    changeTaskStatus: (taskId: string, taskStatus: boolean, todolistId: string) => void
 }
 
 
-export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTaskStatus, todolistId}: TodoListPropsType) => {
+export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTaskStatus,todolistId,removeTodolist}: TodoListPropsType) => {
     // todo: переести
     // let tasksForTodolist = tasks
     // if (tl.filter === 'active') {
@@ -27,18 +28,21 @@ export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTas
     //     tasksForTodolist = tasks.filter(task => task.isDone === true)
     // }
     //
+    const removeTodolistHandler = () => {
+        removeTodolist(todolistId)
+    }
 
     const [taskTitle, setTaskTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
 
     const changeTaskStatusHandler = (taskId: string,e: ChangeEvent<HTMLInputElement>) => {
         const newStatusValue = e.currentTarget.checked
-        changeTaskStatus(taskId, newStatusValue)
+        changeTaskStatus(taskId, newStatusValue, todolistId)
     }
 
     const addTaskHandler = () => {
         if (taskTitle.trim() !== '') {
-            addTask(taskTitle.trim())
+            addTask(taskTitle.trim(), todolistId);
             setTaskTitle('')
         } else {
             setError('Title is required')
@@ -62,7 +66,10 @@ export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTas
 
     return (
         <div>
-            <h3>{title}</h3>
+            <div className={'todolist-title-container'}>
+                <h3>{title}</h3>
+                <Button name={"X"} onClick={removeTodolistHandler} />
+            </div>
             <div>
                 <input value={taskTitle}
                        style={{ color: theme.error.border}}
@@ -83,7 +90,7 @@ export const TodoList = ({title, tasks,removeTask,changeFilter,addTask,changeTas
                 ) : (
                     tasks.map(el => {
                         const removeTaskHandler = () => {
-                            removeTask(el.id)
+                            removeTask(el.id, todolistId);
                         }
                         return (
                             <li key={el.id} className={el.isDone ? 'is-done' : ''}>

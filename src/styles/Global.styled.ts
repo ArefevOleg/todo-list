@@ -45,4 +45,9 @@ export const GlobalStyle = createGlobalStyle`
     .is-done {
         opacity: 0.5;
     }
+
+    .todolist-title-container {
+        display: flex;
+        align-items: center;
+    }
 `
