@@ -30,7 +30,7 @@ export const AddItemForm = ({ addItem }: PropsType) => {
     }
 
     return (
-        <div>
+        <div className="inputMain">
             <input
                 className={error ? 'error' : ''}
                 value={title}

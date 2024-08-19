@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {v1} from 'uuid'
 import {TodoList} from "./TodoList";
+import {AddItemForm} from "./components/AddItemForm";
 
 export type TaskType = {
     id: string
@@ -64,8 +65,16 @@ const App = () => {
         delete tasks[todolistId]
         setTodoLists(newTodolists)
     }
+
+    const addTodolist = (title: string) => {
+        const todolistId = v1()
+        const newTodolist: TodolistType = { id: todolistId, title: title, filter: 'all' }
+        setTodoLists([newTodolist, ...todoLists])
+        setTasks({ ...tasks, [todolistId]: [] })
+    }
     return (
         <div className="app">
+            <AddItemForm addItem={addTodolist} />
             {todoLists.map(tl => {
                 const allTodolistTasks = tasks[tl.id]
                 let tasksForTodolist = allTodolistTasks
@@ -82,6 +91,19 @@ const App = () => {
                     setTodoLists(todoLists.map(tl => (tl.id === todolistId ? {...tl, filter} : tl)))
                 }
 
+                const updateTask = (todolistId: string, taskId: string, title: string) => {
+                    const newTodolistTasks = {
+                        ...tasks,
+                        [todolistId]: tasks[todolistId].map(t => (t.id === taskId ? { ...t, title } : t)),
+                    }
+                    setTasks(newTodolistTasks)
+                }
+
+                const updateTodolist = (todolistId: string, title: string) => {
+                    const newTodolists = todoLists.map(tl => (tl.id === todolistId ? { ...tl, title } : tl))
+                    setTodoLists(newTodolists)
+                }
+
                 return (
                     <TodoList key={tl.id}
                               todolistId={tl.id}
@@ -93,6 +115,8 @@ const App = () => {
                               addTask={addTask}
                               changeTaskStatus={changeTaskStatus}
                               filter={tl.filter}
+                              updateTask={updateTask}
+                              updateTodolist={updateTodolist}
                     />
                 )
             })}

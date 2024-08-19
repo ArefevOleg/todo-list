@@ -23,6 +23,11 @@ export const GlobalStyle = createGlobalStyle`
         min-width: 360px; // обязательно!!!!
         background-color: ${theme.colors.darkBg};
     }
+    
+    .app {
+        display: flex;
+        gap: 10px;
+    }
 
 
     a {
@@ -49,5 +54,14 @@ export const GlobalStyle = createGlobalStyle`
     .todolist-title-container {
         display: flex;
         align-items: center;
+    }
+    
+    .inputMain {
+        width: 200px;
+        margin: 10px;
+    }
+    
+    .todo {
+        
     }
 `
