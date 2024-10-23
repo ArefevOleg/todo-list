@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import {GlobalStyle} from "./styles/Global.styled";
 import App from './App';
-
+import {GlobalStyles} from "./styles/GlobalStyles";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
@@ -10,6 +9,6 @@ const root = ReactDOM.createRoot(
 root.render(
     <React.StrictMode>
         <App/>
-        <GlobalStyle/>
+        <GlobalStyles />
     </React.StrictMode>
 );

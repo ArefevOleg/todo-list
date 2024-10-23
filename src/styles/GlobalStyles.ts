@@ -1,7 +1,7 @@
 import {createGlobalStyle} from 'styled-components';
 import {theme} from './Theme';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyles = createGlobalStyle`
     *,
     *::before,
     *::after {
@@ -45,6 +45,7 @@ export const GlobalStyle = createGlobalStyle`
         border: none;
         cursor: pointer;
         color: ${theme.colors.fontBlack};
+        padding: 2px 5px;
     }
 
     .is-done {
